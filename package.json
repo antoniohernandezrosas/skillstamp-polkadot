@@ -1,0 +1,21 @@
+{
+  "name": "skillstamp-polkadot",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "description": "Verifiable and revocable academic credentials on Polkadot.",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.6.0",
+      "onFail": "download"
+    }
+  },
+  "scripts": {
+    "dev": "pnpm --filter game dev",
+    "build": "pnpm --filter game build",
+    "typecheck": "pnpm --filter game typecheck",
+    "test": "pnpm --filter game test",
+    "preview": "pnpm --filter game preview"
+  }
+}
