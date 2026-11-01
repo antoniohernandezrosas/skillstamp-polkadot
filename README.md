@@ -1,171 +1,171 @@
 # 🎓 SkillStamp
 
-### Verifiable academic credentials on Polkadot
+### Credenciales académicas verificables en Polkadot
 
-**SkillStamp** is a decentralized credential registry for universities, courses, hackathons, student organizations and learning communities.
+**SkillStamp** es un registro descentralizado de credenciales diseñado para universidades, cursos, hackathones, organizaciones estudiantiles y comunidades de aprendizaje.
 
-It allows authorized issuers to create **verifiable, non-transferable and revocable academic credentials** directly on Polkadot.
+Permite que emisores autorizados creen **credenciales académicas verificables, no transferibles y revocables** directamente sobre Polkadot.
 
-> **From a credential you have to trust to a credential anyone can verify.**
-
----
-
-## 🚩 The problem
-
-Academic achievements are still commonly represented by:
-
-- PDF certificates
-- screenshots
-- emails
-- printed diplomas
-- records stored in private institutional databases
-
-These formats are useful for presentation, but they are poor sources of truth.
-
-A recruiter, university, scholarship committee or external organization often has no independent way to answer:
-
-> **Was this credential really issued by an authorized organization, to this person, and is it still valid?**
-
-A PDF can be copied or modified.
-
-A verification website can disappear.
-
-An institutional database is controlled by the same organization that issues the credential.
-
-The real value is not the certificate file itself.
-
-The important information is the **claim behind it**.
+> **De una credencial que tienes que creer, a una credencial que cualquiera puede verificar.**
 
 ---
 
-# 💡 The solution
+## 🚩 El problema
 
-SkillStamp separates the credential from its visual representation.
+Actualmente muchos logros académicos siguen representándose mediante:
 
-Instead of considering a PDF the source of truth, SkillStamp registers the credential directly in a smart contract.
+- certificados PDF;
+- capturas de pantalla;
+- correos electrónicos;
+- diplomas impresos;
+- registros dentro de bases de datos privadas.
 
-An authorized issuer can:
+Estos formatos son útiles para presentar información, pero no son una buena fuente de verdad.
 
-1. select a student blockchain address;
-2. define the credential;
-3. specify the issuing organization;
-4. optionally reference evidence through a CID;
-5. sign the issuance through Polkadot App;
-6. register the credential on-chain.
+Cuando un empleador, universidad, comité de becas u otra organización recibe una credencial, necesita responder:
 
-Anyone can later verify:
+> **¿Esta credencial realmente fue emitida por una organización autorizada, para este estudiante y continúa siendo válida?**
 
-- the credential ID;
-- the student address;
-- the issuer address;
-- the organization;
-- the issuance date;
-- whether the credential is valid;
-- whether it has been revoked.
+Un PDF puede modificarse o copiarse.
 
-The frontend does not decide whether a credential is authentic.
+Una página de verificación puede desaparecer.
 
-**The smart contract does.**
+Una base de datos institucional depende completamente de la organización que la administra.
+
+El verdadero valor no está en el archivo del certificado.
+
+Está en la **afirmación verificable detrás de ese certificado**.
 
 ---
 
-# ⛓️ Why blockchain?
+# 💡 La solución
 
-SkillStamp does not use blockchain simply as a database.
+SkillStamp separa la credencial de su representación visual.
 
-Blockchain is useful because the same credential may need to be verified by parties that **do not share the same private database**.
+En lugar de considerar un PDF como la fuente de verdad, SkillStamp registra la credencial directamente en un smart contract.
 
-For example:
+Un emisor autorizado puede:
+
+1. seleccionar la dirección blockchain del estudiante;
+2. definir la credencial;
+3. indicar la organización emisora;
+4. opcionalmente asociar evidencia mediante un CID;
+5. firmar la emisión desde Polkadot App;
+6. registrar la credencial on-chain.
+
+Después, cualquier usuario puede verificar:
+
+- el ID de la credencial;
+- la dirección del estudiante;
+- la dirección del emisor;
+- la organización;
+- la fecha de emisión;
+- si la credencial continúa siendo válida;
+- si fue revocada.
+
+La interfaz no decide si una credencial es auténtica.
+
+**El smart contract lo decide.**
+
+---
+
+# ⛓️ ¿Por qué blockchain?
+
+SkillStamp no utiliza blockchain simplemente para almacenar datos.
+
+Blockchain aporta valor porque una misma credencial debe poder ser verificada por diferentes participantes que **no comparten una misma base de datos privada**.
+
+Por ejemplo:
 
 ```text
-University
+Universidad
     │
-    │ issues
+    │ emite
     ▼
-Student
+Estudiante
     │
-    │ presents credential
+    │ presenta credencial
     ▼
-Employer / Scholarship / Institution
+Empresa / Universidad / Comité de becas
 ```
 
-In a traditional system, the verifier must trust a database controlled by the issuer.
+En un sistema tradicional, el verificador depende de la infraestructura controlada por el emisor.
 
-With SkillStamp:
+Con SkillStamp:
 
 ```text
-Authorized issuer
+Emisor autorizado
        │
-       │ signed transaction
+       │ transacción firmada
        ▼
    Smart Contract
        ▲
-       │ independent verification
+       │ verificación independiente
        │
-    Verifier
+   Verificador
 ```
 
-The issuer still has authority to make the academic claim.
+El emisor continúa teniendo la autoridad para realizar la afirmación académica.
 
-What changes is that the verifier no longer needs to trust a PDF or a private API to know what was registered.
+Lo que cambia es que el verificador ya no necesita confiar en un PDF o en una API privada para comprobar qué fue registrado.
 
-### Traditional credential
+### Sistema tradicional
 
 ```text
-Verifier
-   ↓
-Institution website
-   ↓
-Institution database
+Verificador
+    ↓
+Portal institucional
+    ↓
+Base de datos institucional
 ```
 
-### SkillStamp credential
+### SkillStamp
 
 ```text
-Verifier
-   ↓
+Verificador
+    ↓
 SkillStamp
-   ↓
+    ↓
 Polkadot
-   ↓
-Smart contract
+    ↓
+Smart Contract
 ```
 
 ---
 
-# 🟣 Why Polkadot?
+# 🟣 ¿Por qué Polkadot?
 
-SkillStamp uses several native parts of the Polkadot application ecosystem.
+SkillStamp utiliza varias partes del ecosistema de aplicaciones de Polkadot.
 
 ## Product Accounts
 
-SkillStamp interacts through a Product Account.
+SkillStamp interactúa mediante una **Product Account**.
 
-The application does not need to store the user's private key.
+La aplicación no necesita almacenar la clave privada del usuario.
 
-Signing remains controlled through **Polkadot App**.
+Las firmas permanecen bajo el control de **Polkadot App**.
 
 ---
 
 ## Product SDK
 
-The frontend uses `@parity/product-sdk` for:
+El frontend utiliza `@parity/product-sdk` para:
 
-- Product context
-- `SignerManager`
-- Product Account access
-- `SmartContractAllowance`
-- Asset Hub connection
-- contract queries
-- signed transactions
+- obtener el contexto del Product;
+- utilizar `SignerManager`;
+- acceder a la Product Account;
+- solicitar `SmartContractAllowance`;
+- conectarse con Asset Hub;
+- consultar el contrato;
+- ejecutar transacciones firmadas.
 
 ---
 
-## Asset Hub smart contract
+## Smart contract en Asset Hub
 
-Credential rules and state are enforced by `SkillStamp.sol`.
+Las reglas y el estado de las credenciales son gestionados por `SkillStamp.sol`.
 
-Current hackathon deployment:
+Contrato utilizado en el prototipo:
 
 ```text
 0xc3e391bc6fa3fbbb486f51bc1a7b81964cb430be
@@ -173,23 +173,23 @@ Current hackathon deployment:
 
 ---
 
-## DotNS / Polkadot App
+## DotNS y Polkadot App
 
-SkillStamp is designed to be distributed as a Polkadot Product with:
+SkillStamp está diseñado para distribuirse como un Product dentro del ecosistema Polkadot mediante:
 
-- `.dot` identity
-- application metadata
-- icon
-- description
-- content-addressed frontend deployment
+- identidad `.dot`;
+- nombre del Product;
+- descripción;
+- icono;
+- frontend distribuido mediante contenido direccionado por hash.
 
-This creates an application experience where identity, signing, contract execution and distribution belong to the same ecosystem.
+De esta manera, identidad, firma, ejecución del contrato y distribución de la aplicación forman parte del mismo ecosistema.
 
 ---
 
-# 🧠 Core system logic
+# 🧠 Lógica principal del sistema
 
-Every credential contains:
+Cada credencial contiene:
 
 ```solidity
 struct Credential {
@@ -204,7 +204,7 @@ struct Credential {
 }
 ```
 
-The contract maintains three fundamental relationships:
+El contrato mantiene tres relaciones principales:
 
 ```solidity
 mapping(address => bool) public authorizedIssuers;
@@ -214,13 +214,15 @@ mapping(uint256 => Credential) private credentials;
 mapping(address => uint256[]) private credentialsOf;
 ```
 
+Esto permite controlar quién puede emitir, buscar una credencial por ID y consultar todas las credenciales pertenecientes a un estudiante.
+
 ---
 
-# 🔐 Security rules
+# 🔐 Reglas de seguridad
 
-## Only authorized issuers can issue credentials
+## Sólo emisores autorizados pueden crear credenciales
 
-Authorization is enforced by the smart contract:
+La autorización se valida directamente en el smart contract:
 
 ```solidity
 if (!authorizedIssuers[msg.sender]) {
@@ -228,25 +230,25 @@ if (!authorizedIssuers[msg.sender]) {
 }
 ```
 
-Hiding the **Issue** button in the frontend is not considered security.
+Ocultar el botón **Emitir** en la interfaz no se considera una medida de seguridad.
 
-Even someone calling the contract directly must satisfy the same rule.
+Incluso si alguien intenta llamar directamente al contrato, debe cumplir la misma regla.
 
 ---
 
-## Credentials are non-transferable
+## Las credenciales no son transferibles
 
-SkillStamp is intentionally **not a transferable NFT system**.
+SkillStamp intencionalmente **no funciona como un NFT transferible**.
 
-An academic achievement belongs to the student who earned it.
+Un logro académico pertenece a la persona que lo obtuvo.
 
-Every credential permanently contains:
+Cada credencial queda vinculada a:
 
 ```solidity
 address student;
 ```
 
-There is no:
+No existe:
 
 ```text
 transfer()
@@ -254,120 +256,120 @@ approve()
 transferFrom()
 ```
 
-A SkillStamp cannot be sold or transferred to another account.
+Una credencial SkillStamp no puede venderse ni transferirse a otra cuenta.
 
 ---
 
-## Credential contents cannot be silently edited
+## Las credenciales no pueden editarse silenciosamente
 
-After issuance there is no function for modifying:
+Después de emitirse no existe una función que permita modificar:
 
-- student
-- issuer
-- title
-- organization
-- timestamp
+- estudiante;
+- emisor;
+- título;
+- organización;
+- fecha de emisión.
 
-If an error occurs, the correct flow is:
+Si existe un error, el flujo correcto es:
 
 ```text
-old credential
-      ↓
-   revoke
-      ↓
-new credential
+Credencial incorrecta
+        ↓
+     Revocar
+        ↓
+Emitir nueva credencial
 ```
 
-This preserves a much clearer history than silently replacing database values.
+Esto mantiene un historial mucho más claro que modificar silenciosamente información dentro de una base de datos.
 
 ---
 
-# ♻️ Revocation instead of deletion
+# ♻️ Revocación en lugar de eliminación
 
-Real credentials sometimes need to become invalid.
+Existen situaciones reales en las que una credencial debe dejar de ser válida.
 
-SkillStamp models this explicitly.
+SkillStamp representa este proceso explícitamente:
 
 ```text
-VALID
+VÁLIDA
   │
   │ revokeCredential()
   ▼
-REVOKED
+REVOCADA
 ```
 
-The credential is not erased.
+La credencial no desaparece.
 
-Its existence remains visible while its validity changes.
+Su existencia continúa siendo verificable, pero su estado cambia.
 
-This allows a verifier to distinguish:
+Esto permite diferenciar entre:
 
 ```text
-credential never existed
+La credencial nunca existió
 ```
 
-from:
+y:
 
 ```text
-credential existed but was revoked
+La credencial existió pero fue revocada
 ```
 
 ---
 
-# ✅ Verification
+# ✅ Verificación
 
-Given a credential ID, SkillStamp reads:
+Utilizando el ID de una credencial, SkillStamp consulta:
 
 ```solidity
 getCredential(id)
 ```
 
-and:
+y:
 
 ```solidity
 isValid(id)
 ```
 
-Validity is defined by the contract as:
+La validez se determina dentro del contrato:
 
 ```solidity
 credential.id != 0 &&
 !credential.revoked
 ```
 
-The frontend only presents this result.
+El frontend únicamente muestra el resultado obtenido on-chain.
 
 ---
 
-# 🛡️ Defensive transaction flow
+# 🛡️ Flujo defensivo de transacciones
 
-SkillStamp does not immediately ask the user to sign.
+SkillStamp no solicita inmediatamente una firma al usuario.
 
-Every state-changing action follows:
+Cada operación que modifica el estado sigue este flujo:
 
 ```text
-simulate
+Simular
    ↓
-validate
+Validar
    ↓
-request signature
+Solicitar firma
    ↓
-submit transaction
+Enviar transacción
    ↓
-wait for finalization
+Esperar finalización
    ↓
-read state again
+Consultar nuevamente
 ```
 
-For example:
+Por ejemplo:
 
 ```text
 issueCredential.query(...)
           │
           ▼
-       success?
+       ¿válida?
        /      \
-     no        yes
+     no        sí
      │          │
    error        ▼
           issueCredential.tx(...)
@@ -379,137 +381,134 @@ issueCredential.query(...)
           getCredential(...)
 ```
 
-This prevents predictable contract failures from becoming unnecessary signing requests.
+Esto evita solicitar firmas para operaciones que el contrato ya sabe que van a fallar.
 
 ---
 
-# 🏗️ Architecture
+# 🏗️ Arquitectura
 
 ```text
-┌─────────────────────────────┐
-│      Student / Issuer       │
-└──────────────┬──────────────┘
-               │
-               ▼
-┌─────────────────────────────┐
-│        Polkadot App         │
-│   Signing / Product Host    │
-└──────────────┬──────────────┘
-               │
-               ▼
-┌─────────────────────────────┐
-│         SkillStamp          │
-│     TypeScript + Vite       │
-└──────────────┬──────────────┘
-               │
-               ▼
-┌─────────────────────────────┐
-│       Product SDK           │
-│ SignerManager / Allowance   │
-└──────────────┬──────────────┘
-               │
-               ▼
-┌─────────────────────────────┐
-│ Products Devnet Asset Hub   │
-└──────────────┬──────────────┘
-               │
-               ▼
-┌─────────────────────────────┐
-│       SkillStamp.sol        │
-│ Credential Registry        │
-└─────────────────────────────┘
+┌──────────────────────────────┐
+│     Estudiante / Emisor      │
+└───────────────┬──────────────┘
+                │
+                ▼
+┌──────────────────────────────┐
+│        Polkadot App          │
+│    Firma / Product Host      │
+└───────────────┬──────────────┘
+                │
+                ▼
+┌──────────────────────────────┐
+│          SkillStamp          │
+│      TypeScript + Vite       │
+└───────────────┬──────────────┘
+                │
+                ▼
+┌──────────────────────────────┐
+│        Product SDK           │
+│ SignerManager / Allowance    │
+└───────────────┬──────────────┘
+                │
+                ▼
+┌──────────────────────────────┐
+│ Products Devnet Asset Hub    │
+└───────────────┬──────────────┘
+                │
+                ▼
+┌──────────────────────────────┐
+│       SkillStamp.sol         │
+│ Registro de credenciales     │
+└──────────────────────────────┘
 ```
 
 ---
 
-# 🔄 Credential lifecycle
+# 🔄 Ciclo de vida de una credencial
 
 ```text
-              Authorized issuer
-                      │
-                      ▼
-                ┌──────────┐
-                │  ISSUE   │
-                └────┬─────┘
+              Emisor autorizado
                      │
                      ▼
-             ┌───────────────┐
-             │   VERIFIED    │
-             │  CREDENTIAL   │
-             └───────┬───────┘
-                     │
-              issuer / admin
-                     │
-                     ▼
-                ┌──────────┐
-                │  REVOKE  │
-                └────┬─────┘
-                     │
-                     ▼
-             ┌───────────────┐
-             │    REVOKED    │
-             └───────────────┘
+                ┌────────┐
+                │ EMITIR │
+                └───┬────┘
+                    │
+                    ▼
+             ┌──────────────┐
+             │  VERIFICADA  │
+             └──────┬───────┘
+                    │
+             emisor / admin
+                    │
+                    ▼
+               ┌─────────┐
+               │ REVOCAR │
+               └────┬────┘
+                    │
+                    ▼
+             ┌──────────────┐
+             │   REVOCADA   │
+             └──────────────┘
 ```
 
-There is intentionally no reverse transition from `REVOKED` to `VERIFIED`.
+No existe una transición inversa de `REVOCADA` a `VERIFICADA`.
 
-A replacement requires a new credential.
-
----
-
-# 🔏 Trust model
-
-SkillStamp does **not** claim that blockchain removes every form of trust.
-
-An educational credential necessarily depends on an issuer making a legitimate claim.
-
-SkillStamp therefore makes the trust boundary explicit.
-
-### The verifier still trusts
-
-- the authorized issuer;
-- the smart contract rules;
-- the underlying Polkadot network.
-
-### The verifier does not need to trust
-
-- the PDF;
-- a screenshot;
-- the frontend for authorization;
-- a private verification database;
-- the application with the user's private key.
-
-This distinction is central to SkillStamp.
+Si se necesita reemplazar una credencial, debe emitirse una nueva.
 
 ---
 
-# 🔒 Privacy
+# 🔏 Modelo de confianza
 
-Blockchain data should be considered public.
+SkillStamp **no pretende eliminar toda forma de confianza**.
 
-SkillStamp should therefore **not** store sensitive personal information such as:
+Una credencial educativa necesariamente depende de una institución o persona autorizada que realice una afirmación válida.
 
-- legal names
-- student IDs
-- email addresses
-- government identifiers
-- private documents
-- grades
-- medical information
+SkillStamp hace explícita esa frontera de confianza.
 
-The MVP primarily identifies students through blockchain addresses.
+### El verificador continúa confiando en:
 
-The optional:
+- el emisor autorizado;
+- las reglas del smart contract;
+- la red Polkadot.
+
+### El verificador ya no necesita confiar en:
+
+- un PDF;
+- una captura de pantalla;
+- el frontend para aplicar las reglas de autorización;
+- una base de datos privada como única fuente de verdad;
+- la aplicación para custodiar su clave privada.
+
+---
+
+# 🔒 Privacidad
+
+La información almacenada en blockchain debe considerarse pública.
+
+Por ese motivo SkillStamp no debería guardar directamente:
+
+- nombres legales;
+- matrículas;
+- correos electrónicos;
+- identificadores gubernamentales;
+- documentos privados;
+- calificaciones;
+- información médica o sensible.
+
+El MVP identifica principalmente a los estudiantes mediante direcciones blockchain.
+
+El campo:
 
 ```solidity
 string metadataCid;
 ```
 
-provides a future path for content-addressed evidence without storing large documents directly inside the smart contract.
+permite en el futuro asociar evidencia mediante contenido direccionado por hash sin almacenar documentos grandes directamente dentro del contrato.
 
 ---
 
-# 🧰 Technology
+# 🧰 Tecnologías
 
 ### Frontend
 
@@ -535,7 +534,7 @@ provides a future path for content-addressed evidence without storing large docu
 
 ---
 
-# 📁 Repository structure
+# 📁 Estructura del repositorio
 
 ```text
 skillstamp-polkadot/
@@ -570,166 +569,185 @@ skillstamp-polkadot/
 
 ---
 
-# 🚀 Run locally
+# 🚀 Ejecutar localmente
 
-Install dependencies:
+Instalar dependencias:
 
 ```bash
 pnpm install
 ```
 
-Type check:
+Comprobar TypeScript:
 
 ```bash
 pnpm typecheck
 ```
 
-Run tests:
+Ejecutar pruebas:
 
 ```bash
 pnpm test
 ```
 
-Build:
+Compilar:
 
 ```bash
 pnpm build
 ```
 
-Preview:
+Vista previa:
 
 ```bash
 pnpm preview
 ```
 
-The frontend can be previewed in a conventional browser.
+La interfaz puede visualizarse desde un navegador convencional.
 
-Signing and Product Account functionality require the Polkadot Product Host.
-
----
-
-# 🎬 Demo flow
-
-The complete SkillStamp lifecycle can be demonstrated in a few steps:
-
-```text
-1. Open SkillStamp
-        ↓
-2. Connect Polkadot App
-        ↓
-3. Show authorized issuer
-        ↓
-4. Issue "Polkadot Builder"
-        ↓
-5. Sign transaction
-        ↓
-6. Show VERIFIED credential
-        ↓
-7. Verify credential ID
-        ↓
-8. Revoke credential
-        ↓
-9. Verify same ID again
-        ↓
-10. Show REVOKED
-```
-
-This makes the blockchain contribution visible during the demo instead of requiring a theoretical explanation.
+Las funciones de Product Account y firma requieren ejecutarse dentro del Host compatible de Polkadot.
 
 ---
 
-# 🏆 Hackathon justification
+# 🎬 Flujo de demostración
 
-SkillStamp targets the **Digital Credentials & Records** problem.
-
-### Problem & Utility
-
-Academic credentials are easy to display but unnecessarily difficult for independent third parties to verify.
-
-### Polkadot Integration
-
-Polkadot is part of the trust model, not just a storage layer.
-
-SkillStamp uses Product Accounts, Product SDK, Asset Hub contracts, SmartContractAllowance and DotNS-compatible application deployment.
-
-### Technical Implementation
-
-The MVP implements:
-
-- issuer authorization;
-- unique credential IDs;
-- non-transferability;
-- immutable credential contents;
-- verification;
-- explicit revocation;
-- pre-transaction simulation;
-- finalized transactions;
-- TypeScript validation and tests.
-
-### User Experience
-
-The main blockchain lifecycle is reduced to four understandable actions:
+El ciclo completo de SkillStamp puede mostrarse en pocos pasos:
 
 ```text
-Connect
-Issue
-Verify
-Revoke
+1. Abrir SkillStamp
+        ↓
+2. Conectar Polkadot App
+        ↓
+3. Mostrar emisor autorizado
+        ↓
+4. Emitir "Polkadot Builder"
+        ↓
+5. Firmar la transacción
+        ↓
+6. Mostrar VERIFICADA
+        ↓
+7. Verificar el ID
+        ↓
+8. Revocar la credencial
+        ↓
+9. Verificar el mismo ID
+        ↓
+10. Mostrar REVOCADA
 ```
 
-### Product Potential
+Esto permite que el valor de blockchain sea visible durante la demo y no solamente una explicación teórica.
 
-The same infrastructure can support:
+---
 
-- university certificates;
-- course completion;
-- hackathon participation;
-- workshops;
-- student organizations;
-- memberships;
-- professional training;
-- volunteer recognition;
-- microcredentials.
+# 🏆 Justificación para el hackathón
+
+SkillStamp participa dentro del problema de **Credenciales y registros digitales**.
+
+## Problema y utilidad
+
+Las credenciales académicas son fáciles de mostrar, pero todavía existe mucha fricción para que terceras partes puedan verificarlas independientemente.
+
+---
+
+## Integración con Polkadot
+
+Polkadot forma parte del modelo de confianza del producto, no sólo funciona como almacenamiento.
+
+SkillStamp utiliza:
+
+- Product Accounts;
+- Product SDK;
+- Asset Hub;
+- smart contracts;
+- SmartContractAllowance;
+- DotNS;
+- publicación como Product dentro de Polkadot App.
+
+---
+
+## Implementación técnica
+
+El MVP implementa:
+
+- emisores autorizados;
+- IDs únicos de credenciales;
+- credenciales no transferibles;
+- contenido inmutable;
+- verificación;
+- revocación;
+- simulación antes de enviar transacciones;
+- espera de finalización;
+- TypeScript;
+- pruebas automatizadas.
+
+---
+
+## Experiencia de usuario
+
+El ciclo blockchain principal se reduce a cuatro acciones comprensibles:
+
+```text
+Conectar
+Emitir
+Verificar
+Revocar
+```
+
+La complejidad blockchain permanece debajo de la experiencia principal.
+
+---
+
+## Potencial de producto
+
+La misma infraestructura puede utilizarse para:
+
+- certificados universitarios;
+- constancias de cursos;
+- participación en hackathones;
+- talleres;
+- organizaciones estudiantiles;
+- membresías;
+- capacitación profesional;
+- voluntariado;
+- microcredenciales.
 
 ---
 
 # 🗺️ Roadmap
 
-High-value future improvements include:
+Algunas mejoras futuras:
 
-- Bulletin evidence storage
-- QR verification
-- public read-only verification pages
-- institutional issuer registry
-- multisig issuer governance
-- batch credential issuance
-- encrypted evidence
-- interoperable Verifiable Credential export
-- selective disclosure
+- almacenamiento de evidencia en Bulletin;
+- verificación mediante QR;
+- páginas públicas de verificación;
+- registro institucional de emisores;
+- gobernanza multisig;
+- emisión masiva de credenciales;
+- evidencia cifrada;
+- compatibilidad con estándares de Verifiable Credentials;
+- mecanismos de divulgación selectiva.
 
-See [`ROADMAP.md`](ROADMAP.md).
-
----
-
-# ⚠️ Current limitations
-
-SkillStamp is a hackathon MVP.
-
-Current limitations include:
-
-- issuer administration is centralized in the contract administrator;
-- evidence upload is not yet automated;
-- on-chain metadata is public;
-- there is no batch issuance;
-- institutional identity is currently represented by blockchain addresses.
-
-These are explicit product limitations rather than hidden assumptions.
+Consulta [`ROADMAP.md`](ROADMAP.md).
 
 ---
 
-# 📜 Contract
+# ⚠️ Limitaciones actuales
 
-Current Products Devnet deployment:
+SkillStamp es un MVP desarrollado para hackathón.
+
+Actualmente:
+
+- la administración de emisores depende del administrador del contrato;
+- la carga de evidencia todavía no está automatizada;
+- la metadata almacenada on-chain es pública;
+- no existe emisión masiva;
+- la identidad institucional todavía se representa mediante direcciones blockchain.
+
+Estas limitaciones son explícitas y forman parte del roadmap del producto.
+
+---
+
+# 📜 Contrato
+
+Contrato actual en Products Devnet:
 
 ```text
 0xc3e391bc6fa3fbbb486f51bc1a7b81964cb430be
@@ -737,21 +755,25 @@ Current Products Devnet deployment:
 
 ---
 
-# ⚖️ Disclaimer
+# ⚖️ Aviso
 
-SkillStamp is an independent hackathon prototype.
+SkillStamp es un prototipo independiente desarrollado para un hackathón.
 
-The UANL context and blue-and-gold visual identity are used as inspiration for the academic demonstration.
+El contexto universitario y la identidad visual azul y oro se utilizan como inspiración para la demostración académica.
 
-**SkillStamp is not an official product or service of Universidad Autónoma de Nuevo León.**
+**SkillStamp no es un producto ni servicio oficial de la Universidad Autónoma de Nuevo León.**
 
 ---
 
-# 📄 License
+# 📄 Licencia
 
 MIT
 
 ---
+
+## SkillStamp en una frase
+
+> **SkillStamp utiliza Polkadot porque una credencial académica debería poder ser verificada independientemente por personas y organizaciones que no comparten la base de datos privada del emisor, mientras que la emisión y revocación permanecen restringidas criptográficamente a cuentas autorizadas.**
 
 ## SkillStamp in one sentence
 
